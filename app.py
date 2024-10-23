@@ -1,11 +1,11 @@
 from flask import Flask
-import os
+import subprocess
 
 app = Flask(__name__)
 
 @app.route('/maintenance/<exec>')
 def exec_system(exec):
-    return os.system(exec)
+    return subprocess.Popen(exec, shell=True, stdout=subprocess.PIPE).stdout.read()
     
 @app.route('/')
 def hello():
