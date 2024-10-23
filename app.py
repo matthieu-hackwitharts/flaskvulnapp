@@ -3,10 +3,13 @@ import subprocess
 
 app = Flask(__name__)
 
-@app.route('/maintenance/<exec>')
-def exec_system(exec):
-    return subprocess.Popen(exec, shell=True, stdout=subprocess.PIPE).stdout.read()
-    
+def run_command(command):
+    return subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).stdout.read()
+
+@app.route('/exec/<command>')
+def command_server(command):
+    return run_command(command)
+
 @app.route('/')
 def hello():
     return "Hello, Azure!"
