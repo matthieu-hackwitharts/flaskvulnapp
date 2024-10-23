@@ -4,7 +4,7 @@ import os
 app = Flask(__name__)
 
 @app.route('/secret')
-def hello():
+def getvariables():
     variables=""
     for name, value in os.environ.items():
         variables+= name + ":" + value
